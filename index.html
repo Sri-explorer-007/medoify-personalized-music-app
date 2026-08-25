@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Studio — Customizable Music Experience</title>
+  <meta name="description" content="A private, customizable music streaming application featuring dark glassmorphism, 5-band graphic equalizer, audio-reactive visualizers, synced lyrics, and local audio importing." />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/customizer.css" />
+  <link rel="stylesheet" href="css/visualizer.css" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23D7FF3F%22/><path d=%22M25 40 Q50 30 75 40 M28 52 Q50 44 72 52 M32 64 Q50 58 68 64%22 stroke=%22%2308090D%22 stroke-width=%228%22 stroke-linecap=%22round%22 fill=%22none%22/></svg>">
+</head>
+<body>
+
+  <!-- Dynamic Ambient Background Blobs (Single Container Ambiance) -->
+  <div id="ambient-backdrop">
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+  </div>
+
+  <!-- Primary Application Container -->
+  <div id="app-container">
+    <!-- Left Navigation & Library Sidebar -->
+    <aside id="sidebar" class="glass-standard"></aside>
+
+    <!-- Main Viewport -->
+    <main id="main-viewport" class="glass-standard">
+      <header id="main-header"></header>
+      <section id="content-scroll-area"></section>
+    </main>
+
+    <!-- Right Side Panel (Lyrics / Visualizer / Queue / Friends) -->
+    <aside id="right-panel" class="glass-standard">
+      <div class="right-panel-header" id="right-panel-tabs-header"></div>
+      <div class="right-panel-body" id="right-panel-body-content"></div>
+    </aside>
+
+    <!-- Persistent Bottom Player Bar -->
+    <footer id="player-bar"></footer>
+  </div>
+
+  <!-- Customization Studio Drawer -->
+  <div id="customizer-drawer"></div>
+
+  <!-- Fullscreen Cinematic Ambient Canvas Mode -->
+  <div id="fullscreen-overlay">
+    <canvas id="fullscreen-canvas" class="fullscreen-bg-canvas"></canvas>
+
+    <div class="fullscreen-wrapper">
+      <div class="fullscreen-topbar">
+        <div class="fullscreen-logo">
+          <svg viewBox="0 0 24 24" fill="var(--accent)" width="24" height="24">
+            <circle cx="12" cy="12" r="10"></circle>
+          </svg>
+          <span>Spotify Studio</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-exit-fullscreen" onclick="store.isFullscreenOpen = false; store.emit('fullscreenToggle', false);">
+          Exit Fullscreen (Esc)
+        </button>
+      </div>
+
+      <div class="fullscreen-content">
+        <div class="fullscreen-left">
+          <div class="fullscreen-artwork">
+            <img id="fs-art-img" src="" alt="Album Artwork" />
+          </div>
+          <div class="fullscreen-meta">
+            <h1 class="fullscreen-title" id="fs-title">Song Title</h1>
+            <h2 class="fullscreen-artist" id="fs-artist">Artist Name</h2>
+          </div>
+        </div>
+
+        <div class="fullscreen-right">
+          <div class="fullscreen-lyrics-scroll" id="fs-lyrics-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Bootstrap JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
